@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  webapidemo:
+    image: webapidemo
+    build:
+      context: .
+      dockerfile: WebAPIDemo/Dockerfile
