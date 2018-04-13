@@ -28,7 +28,7 @@ namespace WebAPIDemo.Controllers
         public void Post([FromBody]object value)
         {
             Console.WriteLine(value);
-            
+            Console.WriteLine("new test value.");
         }
 
         // PUT api/values/5
