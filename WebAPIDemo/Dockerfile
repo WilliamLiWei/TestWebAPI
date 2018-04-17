@@ -16,5 +16,5 @@ RUN dotnet publish -c Release -o /app
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
-EXPOSE 9100/tcp
+ENV ASPNETCORE_URLS http://0.0.0.0:32770
 ENTRYPOINT ["dotnet", "WebAPIDemo.dll"]
