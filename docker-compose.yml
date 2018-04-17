@@ -3,8 +3,9 @@ version: '3'
 services:
   webapidemo:
     image: webapidemo
+    ports:
+        - "8000:8000"
     build:
       context: .
       dockerfile: WebAPIDemo/Dockerfile
-      ports:
-        - "32770:5000"
+      
