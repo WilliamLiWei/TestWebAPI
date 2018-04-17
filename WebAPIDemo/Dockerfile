@@ -16,4 +16,5 @@ RUN dotnet publish -c Release -o /app
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app .
+EXPOSE 9100/tcp
 ENTRYPOINT ["dotnet", "WebAPIDemo.dll"]
