@@ -6,3 +6,5 @@ services:
     build:
       context: .
       dockerfile: WebAPIDemo/Dockerfile
+      ports:
+        - "32770:5000"
