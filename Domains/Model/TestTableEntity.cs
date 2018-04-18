@@ -1,9 +1,10 @@
-﻿using System;
+﻿using Domains.BaseModel;
+using System;
 using System.Collections.Generic;
 
 namespace Domains.Model
 {
-    public partial class TestTableEntity
+    public partial class TestTableEntity : AggregateRoot
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
