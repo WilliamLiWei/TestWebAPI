@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace DBTest.Models
+namespace Domains.Model
 {
     public partial class TestTable2
     {

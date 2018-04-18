@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using Domains;
-using DBTest.Models;
+using Domains.Model;
 
 namespace Services.Services
 {

@@ -1,5 +1,5 @@
 ﻿using System;
-using DBTest.Models;
+using Domains.Model;
 
 namespace Domains
 {

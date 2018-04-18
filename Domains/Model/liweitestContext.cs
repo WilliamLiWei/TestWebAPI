@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 
-namespace DBTest.Models
+namespace Domains.Model
 {
     public partial class liweitestContext : DbContext
     {
