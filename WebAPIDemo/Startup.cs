@@ -8,6 +8,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Microsoft.EntityFrameworkCore;
 
 namespace WebAPIDemo
 {
@@ -23,7 +24,11 @@ namespace WebAPIDemo
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddDbContext<DBTest.Models.liweitestContext>(Options => Options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            
             services.AddMvc();
+
+            services.AddTransient<Services.IServices.ITestTableService, Services.Services.TestTableService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

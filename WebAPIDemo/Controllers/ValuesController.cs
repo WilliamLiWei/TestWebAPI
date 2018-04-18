@@ -3,16 +3,35 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using DBTest.Models;
+using Services.IServices;
 
 namespace WebAPIDemo.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
+        private readonly liweitestContext _liweitestContext;
+        private readonly ITestTableService _testTable;
+
+        public ValuesController(liweitestContext context, ITestTableService tt)
+        {            
+            _liweitestContext = context ?? throw new Exception("Not correct DB context");
+            _testTable = tt;
+        }
+        
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
-        {
+        {            
+            TestTableEntity tt = new TestTableEntity()
+            {
+                Id = Guid.NewGuid(),
+                Name = "william li",
+                Address = "jhc"
+            };
+            _liweitestContext.TestTable.Add(tt);
+            _liweitestContext.SaveChanges();
             return new string[] { "value1 sdfsdf", "value2  sdfsf" };
         }
 
