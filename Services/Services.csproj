@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\DBTest\DBTest\DBTest.csproj" />
     <ProjectReference Include="..\..\Domains\Domains.csproj" />
+    <ProjectReference Include="..\DBTest\DBTest.csproj" />
   </ItemGroup>
 
 </Project>
