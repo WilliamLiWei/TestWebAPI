@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Services.IServices;
 using Domains.Model;
 using Domains.IRespositories;
 
@@ -30,9 +29,9 @@ namespace WebAPIDemo.Controllers
                 Name = "test name",
                 Sex = 0
             };
-            _testTableRep.Insert(tte);            
+            int a = _testTableRep.Insert(tte);            
            
-            return new string[] { "value1 sdfsdf", "value2  sdfsf" };
+            return new string[] { a.ToString(), "" };
         }
 
         // GET api/values/5

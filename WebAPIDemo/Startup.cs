@@ -31,8 +31,6 @@ namespace WebAPIDemo
             
             services.AddMvc();
 
-            services.AddTransient<Services.IServices.ITestTableService, Services.Services.TestTableService>();
-            
             services.AddTransient<ITestTableRepository, TestTableRepository>();
             
             services.AddTransient<IEFUnitOfWork, EFUnitOfWork>();
