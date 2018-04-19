@@ -73,5 +73,6 @@ namespace Repository.Repositories
         {
             return UnitOfWork.context.Set<TEntity>().Find(key);
         }
+
     }
 }

@@ -12,6 +12,9 @@ using Microsoft.EntityFrameworkCore;
 using Domains.IRespositories;
 using Repository.Repositories;
 using Repository.UnitOfWork;
+using SwashBuckle.AspNetCore;
+using System.IO;
+using Microsoft.Extensions.PlatformAbstractions;
 
 namespace WebAPIDemo
 {
@@ -34,6 +37,22 @@ namespace WebAPIDemo
             services.AddTransient<ITestTableRepository, TestTableRepository>();
             
             services.AddTransient<IEFUnitOfWork, EFUnitOfWork>();
+
+            //获取主项目的版本号，在属性当中设置
+            string strVersion = "V" + Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default.Application.ApplicationVersion;
+            services.AddSwaggerGen(options =>
+            {
+                options.DescribeAllEnumsAsStrings();
+                options.SwaggerDoc(strVersion, new Swashbuckle.AspNetCore.Swagger.Info
+                {
+                    Title = "WebAPIDemo",
+                    Version = strVersion,
+                    Description = "Test API demo",
+                    TermsOfService = "Terms of Service"
+                });
+                options.IncludeXmlComments(Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, "WebAPIDemo.xml")); // 注意：此处替换成所生成的XML documentation的文件名。
+                options.DescribeAllEnumsAsStrings();
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +64,12 @@ namespace WebAPIDemo
             }
 
             app.UseMvc();
+            string strVersion = "V" + Microsoft.Extensions.PlatformAbstractions.PlatformServices.Default.Application.ApplicationVersion;
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/" + strVersion + "/swagger.json", "Contacts API V1");
+            });
         }
     }
 }
