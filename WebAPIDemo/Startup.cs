@@ -9,6 +9,9 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
 using Microsoft.EntityFrameworkCore;
+using Domains.IRespositories;
+using Repository.Repositories;
+using Repository.UnitOfWork;
 
 namespace WebAPIDemo
 {
@@ -29,6 +32,10 @@ namespace WebAPIDemo
             services.AddMvc();
 
             services.AddTransient<Services.IServices.ITestTableService, Services.Services.TestTableService>();
+            
+            services.AddTransient<ITestTableRepository, TestTableRepository>();
+            
+            services.AddTransient<IEFUnitOfWork, EFUnitOfWork>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

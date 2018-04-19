@@ -5,33 +5,33 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Services.IServices;
 using Domains.Model;
+using Domains.IRespositories;
 
 namespace WebAPIDemo.Controllers
 {
     [Route("api/[controller]")]
     public class ValuesController : Controller
     {
-        private readonly liweitestContext _liweitestContext;
-        private readonly ITestTableService _testTable;
+        private readonly ITestTableRepository _testTableRep;
 
-        public ValuesController(liweitestContext context, ITestTableService tt)
-        {            
-            _liweitestContext = context ?? throw new Exception("Not correct DB context");
-            _testTable = tt;
+        public ValuesController(ITestTableRepository testTableRepository)
+        {
+            _testTableRep = testTableRepository;
         }
         
         // GET api/values
         [HttpGet]
         public IEnumerable<string> Get()
-        {            
-            TestTableEntity tt = new TestTableEntity()
+        {
+            TestTableEntity tte = new TestTableEntity()
             {
                 Id = Guid.NewGuid(),
-                Name = "william li",
-                Address = "jhc"
+                Address = "new address",
+                Name = "test name",
+                Sex = 0
             };
-            _liweitestContext.TestTable.Add(tt);
-            _liweitestContext.SaveChanges();
+            _testTableRep.Insert(tte);            
+           
             return new string[] { "value1 sdfsdf", "value2  sdfsf" };
         }
 

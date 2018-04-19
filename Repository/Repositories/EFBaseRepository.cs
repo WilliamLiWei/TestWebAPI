@@ -12,9 +12,9 @@ namespace Repository.Repositories
     {
         private IEFUnitOfWork UnitOfWork { get; set; }
 
-        public EFBaseRepository()
+        public EFBaseRepository(IEFUnitOfWork eFUnitOfWork)
         {
-           
+            this.UnitOfWork = eFUnitOfWork;
         }
 
         public IQueryable<TEntity> Entities

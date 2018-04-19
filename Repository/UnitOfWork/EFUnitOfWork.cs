@@ -1,4 +1,5 @@
 ﻿using Domains.BaseModel;
+using Domains.Model;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace Repository.UnitOfWork
 {
-    public class EFUnitOfWork
+    public class EFUnitOfWork: IEFUnitOfWork
     {
         #region 属性
         //通过工作单元向外暴露的EF上下文对象
@@ -16,9 +17,9 @@ namespace Repository.UnitOfWork
         #endregion
 
         #region 构造函数
-        public EFUnitOfWork()
+        public EFUnitOfWork(liweitestContext context)
         {
-            
+            EFContext = context;
         }
         #endregion
 
