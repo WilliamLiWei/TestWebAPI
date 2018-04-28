@@ -31,7 +31,15 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Domains\Domains.csproj" />
+    <ProjectReference Include="..\RedisLib\RedisLib.csproj" />
     <ProjectReference Include="..\Repository\Repository.csproj" />
   </ItemGroup>
-
+  
+ <Target Name="ChangeAliasesOfStrongNameAssemblies" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences">
+    <ItemGroup>
+      <ReferencePath Condition="'%(FileName)' == 'StackExchange.Redis.StrongName'">
+        <Aliases>signed</Aliases>
+      </ReferencePath>
+    </ItemGroup>
+  </Target>
 </Project>

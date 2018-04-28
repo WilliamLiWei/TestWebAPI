@@ -33,6 +33,7 @@ namespace WebAPIDemo
             services.AddDbContext<Domains.Model.liweitestContext>(Options => Options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             
             services.AddMvc();
+            services.AddSingleton(Configuration);
 
             services.AddTransient<ITestTableRepository, TestTableRepository>();
             

@@ -5,6 +5,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Domains.Model;
 using Domains.IRespositories;
+using RedisLib;
+using Microsoft.Extensions.Configuration;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
+using NewRedis=StackExchange.Redis;
 
 namespace WebAPIDemo.Controllers
 {
@@ -15,13 +20,18 @@ namespace WebAPIDemo.Controllers
     public class ValuesController : Controller
     {
         private readonly ITestTableRepository _testTableRep;
+        private IConfigurationRoot _config;
+        private NewRedis.IDatabase database;
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="testTableRepository"></param>
-        public ValuesController(ITestTableRepository testTableRepository)
+        public ValuesController(ITestTableRepository testTableRepository, IHostingEnvironment env)
         {
+            var builder = new ConfigurationBuilder().SetBasePath(env.ContentRootPath).AddJsonFile("appsettings.json");
+            _config = builder.Build();
+            database = RedisClientSingleton.GetInstance(_config).GetDatabase("Redis_6");
             _testTableRep = testTableRepository;
         }
 
@@ -56,7 +66,9 @@ namespace WebAPIDemo.Controllers
         [HttpGet("{id}")]
         public string Get(int id)
         {
-            return "";
+            database.StringSet("ok", id.ToString());
+            Console.WriteLine("id value:" + database.StringGet("ok"));
+            return database.StringGet("ok");
         }
 
         /// <summary>
