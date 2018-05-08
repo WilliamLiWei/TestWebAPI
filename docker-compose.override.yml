@@ -4,3 +4,7 @@ services:
   webapidemo:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development   
+      - EventBusConnection=192.168.1.223
+      - EventBusUserName=guest
+      - EventBusPassword=guest
+      - EventBusRetryCount=5

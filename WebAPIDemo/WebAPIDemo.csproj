@@ -31,6 +31,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Domains\Domains.csproj" />
+    <ProjectReference Include="..\EventBusRabbitMQ\EventBusRabbitMQ.csproj" />
+    <ProjectReference Include="..\EventBus\EventBus.csproj" />
     <ProjectReference Include="..\RedisLib\RedisLib.csproj" />
     <ProjectReference Include="..\Repository\Repository.csproj" />
   </ItemGroup>

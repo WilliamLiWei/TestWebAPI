@@ -15,6 +15,11 @@ using Repository.UnitOfWork;
 using SwashBuckle.AspNetCore;
 using System.IO;
 using Microsoft.Extensions.PlatformAbstractions;
+using EventBusRabbitMQ;
+using RabbitMQ.Client;
+using EventBus.Abstract;
+using Autofac;
+using EventBus;
 
 namespace WebAPIDemo
 {
@@ -53,8 +58,9 @@ namespace WebAPIDemo
                 });
                 options.IncludeXmlComments(Path.Combine(PlatformServices.Default.Application.ApplicationBasePath, "WebAPIDemo.xml")); // 注意：此处替换成所生成的XML documentation的文件名。
                 options.DescribeAllEnumsAsStrings();
-            });
+            });            
         }
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
